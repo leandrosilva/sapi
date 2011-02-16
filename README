@@ -1,0 +1,24 @@
+SAPI - A simple template to build Sinatra-based API.
+
+To use as a template:
+
+    $ git clone git@github.com:leandrosilva/sapi.git     # clone it
+    $ mv sapi myapi                                      # rename it
+    $ cd myapi                                           # come in
+    $ rm -rf .git                                        # and remove the previous git repo
+
+To run by Rack:
+
+    $ rackup config.ru
+
+To package, deploy and run on a Jetty WebServer (for the win):
+
+    $ wabler                                             # package it
+    $ mv myapi.war /$JETTY_HOME/wabapps/                 # deploy it
+    $ jetty                                              # run Jetty
+    $ curl http://127.0.0.1:8080/myapi/                  # test it
+    $ ab -n 10000 -c 25 http://127.0.0.1:8080/myapi/     # and stress it
+
+---
+Author: Leandro Silva (CodeZone)
+Blog: http://leandrosilva.com.br
