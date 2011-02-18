@@ -1,0 +1,14 @@
+development:
+  app: sapi_development
+  level: :debug
+  facility: :local1
+
+test:
+  app: sapi_test
+  level: :debug
+  facility: :local1
+
+production:
+  app: sapi_production
+  level: :info
+  facility: :local1

@@ -4,6 +4,10 @@
 
 set :root, File.expand_path("app")
 
+APPLICATION = YAML.load_file("config/application.yml")[settings.environment.to_s]
+LOGGING = YAML.load_file("config/logging.yml")[settings.environment.to_s]
+DATABASE = YAML.load_file("config/database.yml")[settings.environment.to_s]
+
 #
 # Auto-reload files and routes
 #
@@ -17,31 +21,8 @@ end
 # Logging
 #
 
-logger_config = {
-  :development => {
-    :file_name => "log/development.log",
-    :max_old_files => 10,
-    :max_file_size => 1024000,
-    :level => Logger::DEBUG
-  },
-  
-  :test => {
-    :file_name => "log/test.log",
-    :max_old_files => 10,
-    :max_file_size => 1024000,
-    :level => Logger::DEBUG
-  },
-  
-  :production => {
-    :file_name => "log/production.log",
-    :max_old_files => 10,
-    :max_file_size => 1024000,
-    :level => Logger::INFO
-  }
-}
-
-set :logger_config, logger_config[settings.environment]
-
 configure do
-  use Rack::CommonLogger, File.new(settings.logger_config[:file_name], "a+")
+  SYSLOGGER = Slogger::Logger.new LOGGING["app"], LOGGING["level"], LOGGING["facility"]
+
+  use Slogger::Rack::RequestLogger, SYSLOGGER
 end

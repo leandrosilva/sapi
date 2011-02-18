@@ -3,7 +3,7 @@ require "bundler"
 
 Bundler.require(:default)
 
-require "logger"
+require "yaml"
 
 require "config/environment"
 require "config/database"
