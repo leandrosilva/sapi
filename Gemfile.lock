@@ -16,7 +16,7 @@ GEM
     sinatra (1.1.2)
       rack (~> 1.1)
       tilt (~> 1.2)
-    slogger (0.0.1)
+    slogger (0.0.2)
     tilt (1.2.2)
 
 PLATFORMS
